@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+.container{
+    @apply max-w-[1120px] mx-auto
+}
+@theme {
+  --font-poppins: "Poppins", sans-serif; 
+}
+.menu ul li a{
+    @apply text-[16px] text-[rgba(0,0,0,0.3)] font-poppins duration-300
+}
+.menu ul li a:hover{
+    @apply text-[#000000]
+}
+.catagory a{
+    @apply text-[rgba(255,255,255,0.5)] text-[16px] font-poppins leading-8 font-normal relative
+}
+.catagory a::after{
+    @apply absolute content-[''] h-6 w-px bg-[rgba(255,255,255,0.5)] right-[-60px]
+}
+.catagory a:last-child::after{
+    @apply hidden
+}
+.active button{
+    color: #000;
+    border-bottom: 2px solid #000;
+}
+.range-slider {
+  background: transparent;
+  pointer-events: auto;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 9999px;
+  background: black;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.range-slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 9999px;
+  background: black;
+  cursor: pointer;
+}
+input[type="radio"]:checked + label span {
+    background-color: black;
+}
+.custom-scrollbar::-webkit-scrollbar{
+    width: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb{
+    background-color: #5D5D5D;
+    border-radius: 2PX;
+}
+.custom-scrollbar::-webkit-scrollbar-track{
+    background-color: #D9D9D9;
+}
+.color input[type="radio"]:checked + label span {
+    border: 1px solid red;
+    box-shadow: 0px 0px 0px 2px white inset;
+}
+.size input[type="radio"]:checked + label span {
+    border: 1px solid black;
+    color: #000;
+    background-color: transparent;
+}
