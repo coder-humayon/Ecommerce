@@ -172,7 +172,7 @@ const Details = () => {
                                     !showMore && <div className=' absolute bottom-5 left-0 w-full h-10 bg-linear-to-t from-white to-transparent'></div>
                                 }
 
-                            <a onClick={() => setShowMore (!showMore)} className='text-[14px] text-black underline font-poppins font-normal leading-6 '>{showMore ? 'less...':'more...'}</a>
+                            <a onClick={() => setShowMore (!showMore)} className='text-[14px] text-black underline font-poppins font-normal leading-6 cursor-pointer '>{showMore ? 'less...':'more...'}</a>
                             </div>
 
                             <div className='pt-8 flex gap-4 justify-between'>

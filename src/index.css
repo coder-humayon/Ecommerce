@@ -15,6 +15,10 @@
 .catagory a{
     @apply text-[rgba(255,255,255,0.5)] text-[16px] font-poppins leading-8 font-normal relative
 }
+.catagory a:hover{
+    color: white;
+    transition: all ease-in-out 0.5s;
+}
 .catagory a::after{
     @apply absolute content-[''] h-6 w-px bg-[rgba(255,255,255,0.5)] right-[-60px]
 }

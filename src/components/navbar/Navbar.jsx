@@ -39,7 +39,9 @@ const Navbar = () => {
                     <div className='flex gap-6'>
                         <IoIosHeartEmpty />
                         <Link to='/card'><IoCartOutline /></Link>
-                        <LuUser />
+                        <Link to="/register">
+                            <LuUser />
+                        </Link>
                     </div>
                 </div>
             </div>
