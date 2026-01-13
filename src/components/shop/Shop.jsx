@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../utilities/Container'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import PriceRange from '../utilities/PriceRange';
@@ -19,6 +19,7 @@ import ReactPaginate from "react-paginate";
 import { VscChevronLeft } from "react-icons/vsc";
 import { VscChevronRight } from "react-icons/vsc";
 import { Link } from 'react-router';
+import axios from 'axios';
 
 
 
@@ -36,20 +37,18 @@ const Shop = () => {
     const searchBrand = brands.filter((item) => item.toLowerCase().includes(BrandInput.toLowerCase()));
     const searchRam = ram.filter((item) => item.toLowerCase().includes(ramInput.toLowerCase()));
     const SortList = ['By Rating', 'By Price',]
-    const Products =[
-        {id:1, name:'Apple iPhone 14 Pro 512GB Gold (MQ233)',price:1437, image:pr1},
-        {id:2, name:'Apple iPhone 14 Pro 256GB Space Black (MQ0T3)',price:1437, image:pr2},
-        {id:3, name:'Apple iPhone 13 mini 128GB Pink (MLK23)',price:1437, image:pr3},
-        {id:4, name:'Apple iPhone 14 Pro 1TB Gold (MQ2V3)',price:1437, image:pr4},
-        {id:5, name:'Apple iPhone 14 Pro 128GB Deep Purple (MQ0G3)',price:1437, image:pr5},
-        {id:6, name:'Apple iPhone 13 mini 128GB Pink (MLK23)',price:1437, image:pr6},
-        {id:7, name:'Apple iPhone 14 Pro 256GB Space Black (MQ0T3)',price:1437, image:pr7},
-        {id:8, name:'Apple iPhone 14 Pro 256GB Silver (MQ103)',price:1437, image:pr8},
-        {id:9, name:'Apple iPhone 14 Pro 256GB Space Black (MQ0T3)',price:1437, image:pr9},
-    ]
+
+    const [Products,setPoducts] = useState ([])
+    const [sortby,setSortby] = useState ('rating')
+        useEffect(() =>{
+        axios.get(`https://dummyjson.com/products?sortBy=${sortby}`)
+        .then(res => setPoducts(res.data.products)
+        )
+    })
+
       const [currentPage, setCurrentPage] = useState(0);
     
-      const itemsPerPage = 3;
+      const itemsPerPage = 6;
       const pageCount = Math.ceil(Products.length / itemsPerPage);
     
       const offset = currentPage * itemsPerPage;
@@ -58,6 +57,8 @@ const Shop = () => {
       const handlePageClick = (event) => {
         setCurrentPage(event.selected);
         };
+        
+
 
   return (
     <>
@@ -162,7 +163,11 @@ const Shop = () => {
                                         <ul className=' flex flex-col gap-2 py-3  bg-[#ddddddfa] rounded-lg absolute top-12 left-0 w-full '>
                                             {
                                                 SortList.map((item, index )=> (
-                                                    <li onClick={() =>{ setSort(item),setOpen(false)}} className={` ${index !== SortList.length -1?'border-b border-[#b3a2a2] pb-2  ':''} px-4 hover:bg-[#c6c6c6] cursor-pointer`}>{item}</li>
+                                                    <li onClick={() => { 
+                                                        setSort(item);
+                                                        setOpen(false);
+                                                        setSortby('price')
+                                                    }} className={` ${index !== SortList.length -1?'border-b border-[#b3a2a2] pb-2  ':''} px-4 hover:bg-[#c6c6c6] cursor-pointer`}>{item}</li>
                                                 ))
                                             }
                                         </ul>
@@ -172,16 +177,16 @@ const Shop = () => {
                         </div> 
                         <div className='grid grid-cols-3 gap-4 pt-6'>
                             {
-                                currentItems.map(prod =>(
-                                    <div className='py-6 px-4 bg-[#F6F6F6] rounded-[9px]'>
+                                currentItems.map((prod,index) =>(
+                                    <div key={index} className='py-6 px-4 bg-[#F6F6F6] rounded-[9px]'>
                                         <div className='pb-4'>
                                            <CiHeart className='ms-auto text-[32px] text-[#909090]'/>
                                         </div>
                                         <div>
-                                            <Link to="/product/details"><img src={prod.image} alt="" className='mx-auto' /></Link>
+                                            <Link to="/product/details"><img src={prod.thumbnail} alt="" className='mx-auto' /></Link>
                                         </div>
                                         <div className='text-center'>
-                                            <p className='text-[16px] text-[#000000] font-poppins font-medium leading-6 py-4'><Link to="/product/details">{prod.name}</Link></p>
+                                            <p className='text-[16px] text-[#000000] font-poppins font-medium leading-6 py-4'><Link to="/product/details">{prod.title}</Link></p>
                                             <h3 className='text-black font-poppins font-semibold text-[24px] leding-6 pb-6'>$ <Link to="/product/details">{prod.price}</Link> </h3>
                                             <Link to="/product/details"><button className='text-[14px] text-white font-poppins font-medium leading-6 py-3 px-16 bg-black rounded-[8px] cursor-pointer'> Buy Now </button></Link>
                                         </div>

@@ -1,21 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../utilities/Container'
 import logo from '../../assets/images/logo.png'
 import { CiSearch } from "react-icons/ci";
 import { LuUser } from "react-icons/lu";
 import { IoCartOutline } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
-import { CiMobile4 } from "react-icons/ci";
-import { HiOutlineComputerDesktop } from "react-icons/hi2";
-import { BsSmartwatch } from "react-icons/bs";
-import { CiCamera } from "react-icons/ci";
-import { MdOutlineHeadphones } from "react-icons/md";
-import { FaGamepad } from "react-icons/fa";
 import { Link, Links, } from 'react-router';
 
 
 
+
 const Navbar = () => {
+
   return (
     <nav className=' items-center '>
         <Container>
@@ -46,30 +42,6 @@ const Navbar = () => {
                 </div>
             </div>
         </Container>
-        <div className='py-2 bg-[#2E2E2E]'>
-            <Container>
-                <div className="flex catagory justify-between">
-                    <a href="" className='flex items-center gap-2'>
-                        <CiMobile4 className='text-[24px]' /> <span>Phones</span>
-                    </a>
-                    <a href="" className='flex items-center gap-2'>
-                        <HiOutlineComputerDesktop className='text-[24px]' /> <span>Computers</span>
-                    </a>
-                    <a href="" className='flex items-center gap-2'>
-                        <BsSmartwatch className='text-[24px]' /> <span>Smart Watches</span>
-                    </a>
-                    <a href="" className='flex items-center gap-2'>
-                        <CiCamera className='text-[24px]' /> <span>Cameras</span>
-                    </a>
-                    <a href="" className='flex items-center gap-2'>
-                        <MdOutlineHeadphones className='text-[24px]' /> <span>Headphones</span>
-                    </a>
-                    <a href="" className='flex items-center gap-2'>
-                        <FaGamepad className='text-[24px]' /> <span>Gaming</span>
-                    </a>
-                </div>
-            </Container>
-        </div>
     </nav>
   )
 }

@@ -6,6 +6,7 @@ import card3 from '../assets/images/card3.png'
 import { GoPlus } from "react-icons/go";
 import { LuMinus } from "react-icons/lu";
 import { RiCloseLargeFill } from "react-icons/ri";
+import { Link } from 'react-router'
 
 
 const Card = () => {
@@ -80,7 +81,9 @@ const Card = () => {
                         <h2 className='flex justify-between text-[16px] text-[#545454] font-poppins font-normal leading-6 pb-5'>Estimated shipping & Handling <span className=' text-black font-poppins font-medium'>${Shiping}</span></h2>
                         <h2 className='flex justify-between text-[16px] text-black font-poppins font-medium leading-6 '>total <span>${total}</span></h2>
                         <div className='pt-12 '>
-                            <button className='w-full text-center py-4 text-white rounded-md bg-black text-[16px] font-medium font-poppins cursor-pointer'>Checkout</button>
+                            <Link to='/address'>
+                                <button className='w-full text-center py-4 text-white rounded-md bg-black text-[16px] font-medium font-poppins cursor-pointer'>Checkout</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

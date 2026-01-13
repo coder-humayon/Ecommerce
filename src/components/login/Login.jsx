@@ -7,7 +7,7 @@ const Login = () => {
     <section className='py-15'>
             <Container>
                 <div className='mx-auto w-1/2'>
-                    <div className=" py-14 px-16 border border-[#EBEBEB] rounded-[10px] bg-[#dddddd73] backdrop-blur-lg">
+                    <div className=" py-14 px-16 border border-[#EBEBEB] rounded-[10px] bg-[#1ed2b11d]">
                     <h2 className='text-[20px] text-[#111111] font-poppins font-bold leading-4 pb-10'>Login Form</h2>
                     <form  className='relative'>
                         <div className='flex flex-col gap-2 pb-6'>

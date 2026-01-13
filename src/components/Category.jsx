@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Container from './utilities/Container'
 import { CiMobile4 } from "react-icons/ci";
 import { BsSmartwatch } from "react-icons/bs";
@@ -10,6 +10,8 @@ import { IoChevronForwardSharp } from "react-icons/io5";
 import { IoChevronBackSharp } from "react-icons/io5";
 import { Swiper, SwiperSlide, } from 'swiper/react';
 import 'swiper/css';
+import axios from 'axios';
+import { Link } from 'react-router';
 
 const Category = () => {
     const Categoris = [
@@ -25,7 +27,12 @@ const Category = () => {
         {id:7, name:'Phones', icon:<CiMobile4/>},
     ]
     const swiperRef = useRef(null)
-
+    const [product,setProduct] = useState ([])
+    
+    useEffect (() => {
+        axios.get('https://dummyjson.com/products/categories')
+        .then(res => setProduct(res.data));
+    },[])
   return (
     <>
       <section className='py-20 bg-[#FAFAFA]'>
@@ -47,14 +54,16 @@ const Category = () => {
                     onSwiper={(swiper) => (swiperRef.current = swiper)}
                    >
                     {
-                        Categoris.map(category => (
+                        product.map((category,index) => (
                             <SwiperSlide>
-                            <div className=" py-6 bg-[#EDEDED] rounded-[15px] text-center">
-                                <div className='text-[48px] text-[#000000] flex justify-center'>
-                                    {category.icon}
-                                </div>
-                                <h3 className='pt-2  text-[16px] text-[#000000] font-poppins leading-6 font-medium'>{category.name}</h3>
-                            </div>
+                                <Link to={`products/category/${category.slug}`}>
+                                    <div key={index} className=" py-6 bg-[#EDEDED] rounded-[15px] text-center">
+                                        <div className='text-[48px] text-[#000000] flex justify-center'>
+                                            <CiMobile4/>
+                                        </div>
+                                        <h3 className='pt-2  text-[16px] text-[#000000] font-poppins leading-6 font-medium'>{category.name}</h3>
+                                    </div>
+                                </Link>
                             </SwiperSlide>
                         ))
                     }
