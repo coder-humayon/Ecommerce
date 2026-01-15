@@ -53,6 +53,8 @@ const Shop = () => {
     
       const offset = currentPage * itemsPerPage;
       const currentItems = Products.slice(offset, offset + itemsPerPage);
+        const startItem = offset + 1;
+        const endItem = offset + currentItems.length;
     
       const handlePageClick = (event) => {
         setCurrentPage(event.selected);
@@ -150,7 +152,7 @@ const Shop = () => {
                     <div className="w-3/4">
                         <div className="flex justify-between items-baseline">
                             <div className="">
-                                <p className='text-[16px] text-[#6C6C6C] leading-6 font-poppins font-medium'>Selected Products: <span className='text-[20px] text-[#000000]'>85</span></p>
+                                <p className='text-[16px] text-[#6C6C6C] leading-6 font-poppins font-medium'>Selected Products: <span className='text-[20px] text-[#000000]'>{startItem}–{endItem} of {Products.length}</span></p>
                             </div>
                             <div className="w-[256px] relative">
                                 <button onClick={() => setOpen (!Open)} className='flex w-full justify-between items-center border border-[#D4D4D4] py-3 px-4 rounded-lg cursor-pointer'>
@@ -166,7 +168,7 @@ const Shop = () => {
                                                     <li onClick={() => { 
                                                         setSort(item);
                                                         setOpen(false);
-                                                        setSortby('price')
+                                                        sortby=='rating' ? setSortby('price'):setSortby('rating')
                                                     }} className={` ${index !== SortList.length -1?'border-b border-[#b3a2a2] pb-2  ':''} px-4 hover:bg-[#c6c6c6] cursor-pointer`}>{item}</li>
                                                 ))
                                             }
@@ -183,12 +185,12 @@ const Shop = () => {
                                            <CiHeart className='ms-auto text-[32px] text-[#909090]'/>
                                         </div>
                                         <div>
-                                            <Link to="/product/details"><img src={prod.thumbnail} alt="" className='mx-auto' /></Link>
+                                            <Link to={`/product/details/${prod.id}`}><img src={prod.thumbnail} alt="" className='mx-auto' /></Link>
                                         </div>
                                         <div className='text-center'>
-                                            <p className='text-[16px] text-[#000000] font-poppins font-medium leading-6 py-4'><Link to="/product/details">{prod.title}</Link></p>
-                                            <h3 className='text-black font-poppins font-semibold text-[24px] leding-6 pb-6'>$ <Link to="/product/details">{prod.price}</Link> </h3>
-                                            <Link to="/product/details"><button className='text-[14px] text-white font-poppins font-medium leading-6 py-3 px-16 bg-black rounded-[8px] cursor-pointer'> Buy Now </button></Link>
+                                            <p className='text-[16px] text-[#000000] font-poppins font-medium leading-6 py-4'><Link to={`/product/details/${prod.id}`}>{prod.title}</Link></p>
+                                            <h3 className='text-black font-poppins font-semibold text-[24px] leding-6 pb-6'>$ <Link to="/product/detailsto={`/product/details/${prod.id}`}">{prod.price}</Link> </h3>
+                                            <Link to={`/product/details/${prod.id}`}><button className='text-[14px] text-white font-poppins font-medium leading-6 py-3 px-16 bg-black rounded-[8px] cursor-pointer'> Buy Now </button></Link>
                                         </div>
                                     </div>
                                 ))

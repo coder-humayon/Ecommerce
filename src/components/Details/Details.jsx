@@ -14,13 +14,15 @@ import { PiBatteryVerticalHighBold } from "react-icons/pi";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { BsShop } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
+import axios from 'axios';
+import { useParams } from 'react-router';
 
 
 
 const Details = () => {
-    const [privewImg,setPrivewImg] = useState(one1)
+    const [privewImg,setPrivewImg] = useState(null)
     const [imgIndex,setImgIndex] = useState(0)
-    const gellary =[one1,one2,one3,one4]
+    const [gellary,setGallaary] = useState ([])
     const hamdleClick = (img,index) => {
         setPrivewImg(img)
         setImgIndex(index)
@@ -56,6 +58,19 @@ const Details = () => {
     }, []);
     const [showMore,setShowMore] = useState (false)
 
+
+    const {id} = useParams ()
+    const [products ,setproduct] = useState ({})
+
+    useEffect(() => {
+        axios.get(`https://dummyjson.com/products/${id}`)
+        .then((res) => {setproduct(res.data),
+        setPrivewImg(res.data.thumbnail);
+        setPrivewImg(res.data.images);}
+    )
+    },[id])
+    
+    console.log(products);
     
   return (
     <>
@@ -100,13 +115,21 @@ const Details = () => {
                             }
                         </div>
                         <div className="w-[85%]">
-                            <img src={privewImg} className=' w-[413px] h-[516px]'  alt="" />
+                            <img src={privewImg} className=' w-[413px] '  alt="" />
                         </div>
                     </div>
                     <div className="w-1/2">
                         <div>
-                            <h2 className='text-blck font-poppins text-[40px] font-bold leading-10 pb-6'>Apple iPhone 14 Pro Max</h2>
-                            <h3 className='text-black font-poppins font-medium text-[32px] leading-12 flex gap-4 items-center pb-6'>${price} <del className='text-[#A0A0A0] font-poppins font-medium text-[24px] leading-8 '>${discount}</del></h3>
+                            <h2 className='text-blck font-poppins text-[40px] font-bold leading-10 pb-6'>{products.title}</h2>
+                            {
+                                products.discountPercentage ? 
+                                <h3 className='text-black font-poppins font-medium text-[32px] leading-12 flex gap-4 items-center pb-6'>${(products.price - 
+                                (products.price *products.discountPercentage)
+                                /100).toFixed(2)}
+                                 <del className='text-[#A0A0A0] font-poppins font-medium text-[24px] leading-8 '>${products.price}</del></h3> :
+                                 <del className='text-[#A0A0A0] font-poppins font-medium text-[24px] leading-8 '>${products.price}</del>
+                            }
+                            
                         </div>
                         <div className='flex items-center gap-6'>
                             <div>
@@ -167,7 +190,7 @@ const Details = () => {
                         </div>
                         <div className='pt-6'>
                             <div  className=' relative'>
-                                <p className={`${showMore ? 'max-h-[400px]': 'max-h-[75px]'} overflow-hidden transition-all duration-500 text-[14px] text-[#6C6C6C] font-poppins font-normal leading-6 `}>Enhanced capabilities thanks toan enlarged display of 6.7 inchesand work without rechargingthroughout the day. Incredible photosas in weak, yesand in bright lightusing the new systemwith two cameras Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque vitae repudiandae tempore iure a! Voluptatibus, neque suscipit consectetur eius quam ab. Voluptatem exercitationem suscipit nihil quasi nam fugiat possimus ex!</p>
+                                <p className={`${showMore ? 'max-h-[400px]': 'max-h-[75px]'} overflow-hidden transition-all duration-500 text-[14px] text-[#6C6C6C] font-poppins font-normal leading-6 `}>{products.description}</p>
                                 {
                                     !showMore && <div className=' absolute bottom-5 left-0 w-full h-10 bg-linear-to-t from-white to-transparent'></div>
                                 }
