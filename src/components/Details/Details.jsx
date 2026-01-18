@@ -13,6 +13,9 @@ import { IoMdReverseCamera } from "react-icons/io";
 import { PiBatteryVerticalHighBold } from "react-icons/pi";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { BsShop } from "react-icons/bs";
+import { IoIosStar } from "react-icons/io";
+import { IoIosStarHalf } from "react-icons/io";
+import { IoIosStarOutline } from "react-icons/io";
 import { GoVerified } from "react-icons/go";
 import axios from 'axios';
 import { useParams } from 'react-router';
@@ -66,11 +69,9 @@ const Details = () => {
         axios.get(`https://dummyjson.com/products/${id}`)
         .then((res) => {setproduct(res.data),
         setPrivewImg(res.data.thumbnail);
-        setPrivewImg(res.data.images);}
+        setGallaary(res.data.images);}
     )
     },[id])
-    
-    console.log(products);
     
   return (
     <>
@@ -107,20 +108,34 @@ const Details = () => {
                 </div>
                 <div className="flex gap-12 pt-28">
                     <div className="w-1/2 flex gap-12 items-center">
-                        <div className="w-[15%] flex flex-col gap-6">
+                        <div className="w-[20%] flex flex-col gap-6">
                             {
                                 gellary.map((gel,index) => (
-                                    <img onClick={ () => hamdleClick (gel,index)} src={gel} className={` duration-300 w-18.5 h-23.5 cursor-pointer ${imgIndex === index ? "opacity-100 scale-130 " :'opacity-40'}`}  alt="" />
+                                    <img onClick={ () => hamdleClick (gel,index)} src={gel} className={` duration-300  cursor-pointer ${imgIndex === index ? "opacity-100 scale-130 " :'opacity-40'}`}  alt="" />
                                 ))
                             }
                         </div>
-                        <div className="w-[85%]">
-                            <img src={privewImg} className=' w-[413px] '  alt="" />
+                        <div className="w-[80%]">
+                            <img src={privewImg} className=' w-[600px] '  alt="" />
                         </div>
                     </div>
                     <div className="w-1/2">
                         <div>
                             <h2 className='text-blck font-poppins text-[40px] font-bold leading-10 pb-6'>{products.title}</h2>
+                            <div className='flex gap-4 text-2xl text-yellow-500'>
+                                {
+                                    Array.from({length:5}).map((_ , i) =>{
+                                        console.log(i);
+                                        const rating = products.rating
+                                        const fullstar= Math.floor(rating)
+                                        const Hashalf = rating - fullstar >= 0.5
+
+                                        if(i < fullstar) return <IoIosStar/>
+                                        if(i === fullstar && Hashalf) return <IoIosStarHalf/>
+                                        return <IoIosStarOutline/>
+                                    })
+                                }
+                            </div>
                             {
                                 products.discountPercentage ? 
                                 <h3 className='text-black font-poppins font-medium text-[32px] leading-12 flex gap-4 items-center pb-6'>${(products.price - 
