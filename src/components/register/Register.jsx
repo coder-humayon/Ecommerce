@@ -8,13 +8,13 @@ const Register = () => {
 
 const auth = getAuth();
 
-const [formData,setFormData] = useState ([
+const [formData,setFormData] = useState (
     {
         name:'',
         email:'',
         password:'',
     }
-])
+)
 
 const [errors,setErrors] = useState ({})
 const Validate = () => {
@@ -22,16 +22,16 @@ const Validate = () => {
      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!formData.name) {
-        newErrors.name ='Place Enter Your Name'
+        newErrors.name ='please Enter Your Name'
     }
     if (!formData.email) {
-        newErrors.email ='Place Enter Your email'
+        newErrors.email ='please Enter Your email'
     }
     else if (!pattern.test(formData.email)) {
-        newErrors.email ='Place Enter Validate email'
+        newErrors.email ='please Enter Validate email'
     }
     if (!formData.password) {
-        newErrors.password ='Place Enter Your password'
+        newErrors.password ='please Enter Your password'
     }
     else if (!regex.test(formData.password)) {
         newErrors.password ='Password Must Have Uppercase, Lowercase, Number, Symbols And Min 8 Charecters'
@@ -51,6 +51,13 @@ const HandlSsubmit =(e) => {
         displayName: formData.name
         })   
       })
+
+      setFormData({
+        name:'',
+        email:'',
+        password:'',
+      });
+
        Swal.fire({
         title: "Congratulations!",
         text: "Registration Success!",
@@ -70,14 +77,17 @@ const HandlSsubmit =(e) => {
                     <form onSubmit={HandlSsubmit}  className='relative'>
                         <div className='flex flex-col gap-2 pb-6'>
                             <label className='text-[14px] text-[#545454] font-poppins font-medium leading-4pb-2'>Full Name </label>
-                            <input onChange={(e) => setFormData(prev => ({...prev, name:e.target.value}))} className='w-full p-4 border border-[#9F9F9F] rounded-lg outline-0 text-[#979797] text-[14px] leading-6' type="text" placeholder='Enter Your Name' />
+                            <input value={formData.name}
+                            onChange={(e) => setFormData(prev => ({...prev, name:e.target.value}))}
+                             className='w-full p-4 border border-[#9F9F9F] rounded-lg outline-0 text-[#979797] text-[14px] leading-6' type="text" placeholder='Enter Your Name' />
                             {
                                 errors.name && <strong className='text-red-500'>{errors.name}</strong>
                             }
                         </div>
                         <div className='flex flex-col gap-2 pb-6'>
                             <label className='text-[14px] text-[#545454] font-poppins font-medium leading-4pb-2'>Email Address </label>
-                            <input onChange={(e) => setFormData(prev => ({...prev, email:e.target.value}))}
+                            <input value={formData.email}
+                             onChange={(e) => setFormData(prev => ({...prev, email:e.target.value}))}
                             className='w-full p-4 border border-[#9F9F9F] rounded-lg outline-0 text-[#979797] text-[14px] leading-6' type="email" placeholder='Enter Your Email'/>
                             {
                                 errors.email && <strong className='text-red-500'>{errors.email}</strong>
@@ -86,7 +96,8 @@ const HandlSsubmit =(e) => {
                         </div>
                         <div className='flex flex-col gap-2'>
                             <label className='text-[14px] text-[#545454] font-poppins font-medium leading-4pb-2'>Pasoword</label>
-                            <input onChange={(e) => setFormData(prev => ({...prev, password:e.target.value}))} className='w-full p-4 border border-[#9F9F9F] rounded-lg outline-0 text-[#979797] text-[14px] leading-6' type="password" placeholder='Enter Your Pasoword' />
+                            <input value={formData.password}
+                            onChange={(e) => setFormData(prev => ({...prev, password:e.target.value}))} className='w-full p-4 border border-[#9F9F9F] rounded-lg outline-0 text-[#979797] text-[14px] leading-6' type="password" placeholder='Enter Your Pasoword' />
                             {
                                 errors.password && <strong className='text-red-500'>{errors.password}</strong>
                             }
