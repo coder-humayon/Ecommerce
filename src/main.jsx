@@ -14,6 +14,9 @@ import Shipping from './components/Shipping/Shipping.jsx';
 import Address from './components/Address/Address.jsx';
 import ProductsCategory from './components/productscategory/ProductsCategory.jsx';
 import firebaseConfig from './FirebaseConfig.js';
+import Profile from './components/profile/Profile.jsx';
+import { store } from './components/redux/Store.js'
+import { Provider } from 'react-redux'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
       { path: 'shipping', Component: Shipping },
       { path: 'address', Component:Address },
       { path: 'products/category/:slug', Component:ProductsCategory },
+      { path: 'profile', Component:Profile },
     ],
   },
 ]);
@@ -36,5 +40,7 @@ const router = createBrowserRouter([
 
 
 createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
      <RouterProvider router={router} />,
+  </Provider>
 )

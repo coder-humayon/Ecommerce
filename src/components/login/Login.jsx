@@ -37,6 +37,10 @@ const Login = () => {
               .catch((error) => {
                 setErrorMessage(error.message);
             })
+            setFormData({
+                email:'',
+                password:'',
+            });
         }  
     }
     setTimeout (() =>{

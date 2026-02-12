@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Container from '../utilities/Container'
 import { Link } from 'react-router'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import Swal from 'sweetalert2'
 
 const Register = () => {

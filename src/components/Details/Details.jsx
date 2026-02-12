@@ -19,6 +19,10 @@ import { IoIosStarOutline } from "react-icons/io";
 import { GoVerified } from "react-icons/go";
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addtocart } from '../redux/cartSlice';
+import { GoPlus } from "react-icons/go";
+import { LuMinus } from "react-icons/lu";
 
 
 
@@ -64,6 +68,7 @@ const Details = () => {
 
     const {id} = useParams ()
     const [products ,setproduct] = useState ({})
+    const [quntity,setQuntity] = useState(1)
 
     useEffect(() => {
         axios.get(`https://dummyjson.com/products/${id}`)
@@ -72,6 +77,15 @@ const Details = () => {
         setGallaary(res.data.images);}
     )
     },[id])
+    const dispatch = useDispatch()
+    const Addtocart = () =>{
+        dispatch (addtocart({
+            id:products.id,
+            title:products.title,
+            price:products.price,
+            thumbnail:products.thumbnail,
+        }))
+    }
     
   return (
     <>
@@ -202,6 +216,11 @@ const Details = () => {
                                 <PiBatteryVerticalHighBold className='text-[24px] text-[#4E4E4E]'/>
                                 <span className='text-[14px] text-[#A7A7A7] font-poppins font-normal leading-4'>Battery capacity <span className='text-[#4E4E4E] pr-3'>4323 mAh</span></span>
                             </div>
+                        </div>
+                        <div className="w-[20%] flex gap-2 pt-5 items-center pr-4">
+                            <LuMinus onClick={() => setQuntity((prev)=>prev-1)} className=' text-2xl text-black cursor-pointer'/>
+                            <span className='w-9.5 h-8 border border-[#D9D9D9] text-center leading-8 rounded-sm'>{quntity}</span>
+                            <GoPlus onClick={() => setQuntity((prev)=>prev+1)} className=' text-2xl text-black cursor-pointer'/>
                         </div>
                         <div className='pt-6'>
                             <div  className=' relative'>

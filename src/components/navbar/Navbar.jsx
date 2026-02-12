@@ -6,12 +6,28 @@ import { LuUser } from "react-icons/lu";
 import { IoCartOutline } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { Link, Links, } from 'react-router';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import Authinfo from '../redux/AuthSlice.jsx';
 
 
 
 
 const Navbar = () => {
-
+    const dispatch = useDispatch()
+    const auth = getAuth();
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            dispatch(Authinfo ({
+                 uid: user.uid,
+                 email: user.email,
+                 dispalayName: user.displayName,
+            }))
+        } 
+        });
+        return () => unsub()
+    })
   return (
     <nav className=' items-center '>
         <Container>
@@ -29,13 +45,14 @@ const Navbar = () => {
                         <li><a href="">About</a></li>
                         <li><Link to="shop">Shop</Link></li>
                         <li><a href="">Contact</a></li>
+                        <li><Link to="register">Sign Up</Link></li>
                     </ul>
                 </div>
                 <div className='[&>dev]: text-[24px] [&>dev]:text-black'>
                     <div className='flex gap-6'>
                         <IoIosHeartEmpty />
                         <Link to='/card'><IoCartOutline /></Link>
-                        <Link to="/register">
+                        <Link to="/profile">
                             <LuUser />
                         </Link>
                     </div>
