@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     path: "/",
     Component: MainRoot,
     children: [
-      { index: true, Component: App },
+      { index: true, element: <App /> },
       { path: 'shop', Component: Shop },
       { path: 'product/details/:id', Component: Details },
       { path: 'card', Component: Card },
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
       { path: 'address', Component:Address },
       { path: 'products/category/:slug', Component:ProductsCategory },
       { path: 'profile', Component:Profile },
+      { path: "*", element: <App /> },
     ],
   },
 ]);

@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from "../../components/utilities/Container";
 import banner_img from '../../assets/images/banner_img.png'
+import bannar from '../../assets/images/banner2.jfif'
 import ShopButton from '../../components/utilities/ShopButton';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -32,7 +33,7 @@ const BannerSlider = () => {
                   <ShopButton className="text-white border-white"></ShopButton>
               </div>
               <div className='w-[30%] pt-[73px]'>
-                  <img src={banner_img} alt="" />
+                  <img src={bannar} alt="" />
               </div>
             </div>
           </div>
