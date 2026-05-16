@@ -33,7 +33,6 @@ const router = createBrowserRouter([
       { path: 'address', Component:Address },
       { path: 'products/category/:slug', Component:ProductsCategory },
       { path: 'profile', Component:Profile },
-      { path: "*", element: <App /> },
     ],
   },
 ]);
