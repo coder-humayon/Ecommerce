@@ -1,7 +1,8 @@
 import React from 'react'
 import Container from "../../components/utilities/Container";
 import banner_img from '../../assets/images/banner_img.png'
-import bannar from '../../assets/images/banner2.jfif'
+import banner from '../../assets/images/banner.png'
+import banner1 from '../../assets/images/banner2.png'
 import ShopButton from '../../components/utilities/ShopButton';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -11,14 +12,14 @@ const BannerSlider = () => {
   var settings = {
     dots: false,
     infinite: true,
-    speed: 1000,
+    speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    fade:true,
-    autoplay:true,
-    autoplaySpeed:1500,
-    arrows:false,
-
+    fade: false,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    arrows: false,
+    rtl: false,
   };
   return (
     <section className='bg-[#211C24]'>
@@ -28,12 +29,12 @@ const BannerSlider = () => {
             <div className="flex items-center">
               <div className='w-[70%]'>
                   <h4 className='font-figtree font-semibold text-[25px] text-[rgba(255,255,255,0.4)] leading-8'>Pro.Beyond.</h4>
-                  <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 14 <span className='font-semibold'>Pro</span></h1>
+                  <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 15 <span className='font-semibold'>Pro</span></h1>
                   <p className='font-popins font-medium text-[#909090] text-[18px] leading-6 pb-10'>Created to change everything for the better. For everyone</p>
                   <ShopButton className="text-white border-white"></ShopButton>
               </div>
               <div className='w-[30%] pt-[73px]'>
-                  <img src={bannar} alt="" />
+                  <img src={banner_img} alt="" />
               </div>
             </div>
           </div>
@@ -41,12 +42,12 @@ const BannerSlider = () => {
             <div className="flex items-center">
             <div className='w-[70%]'>
                 <h4 className='font-figtree font-semibold text-[25px] text-[rgba(255,255,255,0.4)] leading-8'>Pro.Beyond.</h4>
-                <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 17 <span className='font-semibold'>Pro</span></h1>
+                <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 16 <span className='font-semibold'>Pro</span></h1>
                 <p className='font-popins font-medium text-[#909090] text-[18px] leading-6 pb-10'>Created to change everything for the better. For everyone</p>
                 <ShopButton className="text-white border-white"></ShopButton>
             </div>
             <div className='w-[30%] pt-[73px]'>
-                <img src={banner_img} alt="" />
+                <img src={banner} alt="" />
             </div>
           </div>
           </div>
@@ -54,12 +55,12 @@ const BannerSlider = () => {
             <div className="flex items-center">
               <div className='w-[70%]'>
                   <h4 className='font-figtree font-semibold text-[25px] text-[rgba(255,255,255,0.4)] leading-8'>Pro.Beyond.</h4>
-                  <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 18 <span className='font-semibold'>Pro</span></h1>
+                  <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 17 <span className='font-semibold'>Pro</span></h1>
                   <p className='font-popins font-medium text-[#909090] text-[18px] leading-6 pb-10'>Created to change everything for the better. For everyone</p>
                   <ShopButton className="text-white border-white" ></ShopButton>
               </div>
               <div className='w-[30%] pt-[73px]'>
-                  <img src={banner_img} alt="" />
+                  <img src={banner1} alt="" />
               </div>
             </div>
           </div>
