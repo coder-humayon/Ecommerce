@@ -27,11 +27,11 @@ const BannerSlider = () => {
           <Slider {...settings}>
           <div>
             <div className="flex items-center">
-              <div className='w-[70%]'>
+              <div className='w-[70%] pl-4'>
                   <h4 className='font-figtree font-semibold text-[25px] text-[rgba(255,255,255,0.4)] leading-8'>Pro.Beyond.</h4>
                   <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 15 <span className='font-semibold'>Pro</span></h1>
                   <p className='font-popins font-medium text-[#909090] text-[18px] leading-6 pb-10'>Created to change everything for the better. For everyone</p>
-                  <ShopButton className="text-white border-white"></ShopButton>
+                  <ShopButton className="text-white border-white hover:bg-emerald-900"></ShopButton>
               </div>
               <div className='w-[30%] pt-[73px]'>
                   <img src={banner_img} alt="" />
@@ -40,27 +40,27 @@ const BannerSlider = () => {
           </div>
           <div>
             <div className="flex items-center">
-            <div className='w-[70%]'>
+            <div className='w-[70%] pl-4'>
                 <h4 className='font-figtree font-semibold text-[25px] text-[rgba(255,255,255,0.4)] leading-8'>Pro.Beyond.</h4>
                 <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 16 <span className='font-semibold'>Pro</span></h1>
                 <p className='font-popins font-medium text-[#909090] text-[18px] leading-6 pb-10'>Created to change everything for the better. For everyone</p>
-                <ShopButton className="text-white border-white"></ShopButton>
+                <ShopButton className="text-white border-white hover:bg-emerald-900"></ShopButton>
             </div>
             <div className='w-[30%] pt-[73px]'>
-                <img src={banner} alt="" />
+                <img src={banner_img} alt="" />
             </div>
           </div>
           </div>
           <div>
             <div className="flex items-center">
-              <div className='w-[70%]'>
+              <div className='w-[70%] pl-4'>
                   <h4 className='font-figtree font-semibold text-[25px] text-[rgba(255,255,255,0.4)] leading-8'>Pro.Beyond.</h4>
                   <h1 className='py-6 font-popins text-[96px] leading-18 text-white font-thin'>IPhone 17 <span className='font-semibold'>Pro</span></h1>
                   <p className='font-popins font-medium text-[#909090] text-[18px] leading-6 pb-10'>Created to change everything for the better. For everyone</p>
-                  <ShopButton className="text-white border-white" ></ShopButton>
+                  <ShopButton className="text-white border-white hover:bg-emerald-900" ></ShopButton>
               </div>
               <div className='w-[30%] pt-[73px]'>
-                  <img src={banner1} alt="" />
+                  <img src={banner_img} alt="" />
               </div>
             </div>
           </div>
